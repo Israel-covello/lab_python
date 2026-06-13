@@ -1,22 +1,32 @@
 print("=== SISTEMA DE PRECIFICAÇÃO ===")
+print("Dica: Digite 'sair' no nome do produto para fechar o sistema.\n")
 
-# 1 - Entrada de dados.
-nome_produto = input("Insira o nome do produto: ")
+# Comando de loop (roda para sempre)
+while True:
+    print("-" * 30) # Apenas imprime a linha tracejada
 
-# Conversão para decimal.
-custo_compra = float(input("Custo do produto: "))
-preco_venda = float(input("Preço de venda planejado: "))
+    # 1 - Entrada de dados
+    nome_produto = input("Insira o nome do produto: ")
 
-# 2 - Regra de processamento.
-lucro_bruto = preco_venda - custo_compra
-margem_percentual = (lucro_bruto / preco_venda) * 100
+    # A regrada para parar (Botão de emergência)
+    # .lower() transforma o que o usuário digitou em minúsculas para evitar erros (Sair, SAIR, sair)
+    if nome_produto.lower() == 'sair':
+        print("Sessão encerrada!")
+        break # O "break" é o freio de mão que quebra o loop e finaliza o programa
 
-# 3 - Decisão
-print("\n--- Relatório Financeiro de", nome_produto, "---")
+    custo_compra = float(input("Insira o preço de custo: "))
+    preco_venda = float(input("Insira o preço de venda planejado: "))
 
-if margem_percentual >= 30:
-    print("Status APROVADO! Margem de", round(margem_percentual, 2),"%")
-elif margem_percentual >= 20:
-    print("Status ATENÇAÕ! Margem de", round(margem_percentual, 2),"%")
-else:
-    print("Satatus REPROVADO! Margem baixa de", round(margem_percentual),"%")
+    # 2 - O Processamento
+    lucro_bruto = preco_venda - custo_compra
+    margem_percentual = (lucro_bruto / preco_venda) * 100
+
+    # 3 - A decisão
+    print("\n [ RESULTADO ]")
+    if margem_percentual >= 30:
+        print("Satatus: APROVADO! Margem de", round(margem_percentual, 2), "%")
+    elif margem_percentual >= 20:
+        print("Satatus ATENÇÃO! Margem baixa de", round(margem_percentual, 2), "%")
+    else:
+        print("Status: BLOQUEADO! Margem baixa de", round(margem_percentual, 2), "%")
+    print("\n") # Pula uma linha antes de reiniciar o loop
