@@ -1,0 +1,1 @@
+print("Hello World! O tabu foi quebrado e o ambiente está 100%")
